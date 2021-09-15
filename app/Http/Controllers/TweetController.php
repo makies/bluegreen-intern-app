@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tweet;
@@ -14,7 +13,8 @@ class TweetController extends Controller
 {
 
     //ツイートを作成し, Homeにリダイレクトさせる
-    public function add(Request $request){
+    public function add(Request $request)
+    {
         $tweet = TweetService::create_tweet([
             'tweet_text' => $request->tweet_text,
             'user_id' => Auth::id(),
@@ -25,7 +25,8 @@ class TweetController extends Controller
     }
 
     //ツイートを削除し, Homeにリダイレクトさせる
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
 
         $tweet = TweetService::delete_tweet([
             'id' => $request->id,
@@ -36,7 +37,8 @@ class TweetController extends Controller
     }
 
     //ホームでフォロイーのツイートを表示する
-    public function index($page = '1'){
+    public function index($page = '1')
+    {
 
         $tweets = TweetService::get_tweets_at_page([
             'user_id' => Auth::id(),
@@ -50,9 +52,8 @@ class TweetController extends Controller
         return view('home', [
             'page' => $page,
             'path' => 'home',
-            'tweets'=>$tweets,
+            'tweets' => $tweets,
             'page_num' => $page_num
         ]);
     }
-
 }

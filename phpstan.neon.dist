@@ -1,0 +1,27 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+    - ./vendor/phpstan/phpstan-mockery/extension.neon
+    - ./vendor/slam/phpstan-extensions/conf/symfony-rules.neon
+    - ./vendor/slam/phpstan-extensions/conf/slam-rules.neon
+    - ./vendor/ekino/phpstan-banned-code/extension.neon
+
+parameters:
+
+    paths:
+        - app
+        - tests
+
+    excludePaths:
+        - tests/CreatesApplication.php
+        - tests/TestCase.php
+
+    # The level 8 is the highest level
+    level: 8
+
+    excludes_analyse:
+    #    - ./*/*/FileToBeExcluded.php
+
+    checkMissingIterableValueType: false
+
+    ignoreErrors:
+    #    - '#App\\Models#'

@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class FollowController extends Controller
 {
     //フォローし, 前いたページにリダイレクトさせる
-    public function add(Request $request){
+    public function add(Request $request)
+    {
         $follow = FollowService::follow([
             'following_user_id' => Auth::id(),
             'followed_user_id' => $request['user_id'],
@@ -19,12 +20,13 @@ class FollowController extends Controller
     }
 
     //アンフォローし, 前いたページにリダイレクトさせる
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $follow = FollowService::unfollow([
             'following_user_id' => Auth::id(),
             'followed_user_id' => $request->user_id,
         ]);
 
         return redirect(url()->previous());
-     }
+    }
 }
